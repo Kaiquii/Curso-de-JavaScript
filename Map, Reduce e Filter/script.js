@@ -20,12 +20,6 @@
             
 */
 
-// const numeros = [1, 2, 3, 4, 5];
-
-// const dobro = numeros.map((numero, index, arrayCompleto) => {
-//  console.log(arrayCompleto);|
-// });
-
 const produtos = [
   { id: 1, nome: "Samsung Galaxy S21", preco: 3999.99, temDesconto: true, quantidade: 1, },
   { id: 2, nome: "iPhone 14", preco: 6499.9, temDesconto: false, quantidade: 1, },
@@ -39,37 +33,60 @@ const produtos = [
   { id: 10, nome: "Poco X6 Pro", preco: 2099.9, temDesconto: true, quantidade: 1, },
 ];
 
+// Adicionar + 10 em cada produto
+// Filtrar só os em promoção
+// Saber qual é o faturamento se vendermos todos os em promoção
+
+const faturamentoTotal = produtos
+  .map((produto) => ({ ...produto, quantidade: produto.quantidade + 10 }))
+  .filter((produto) => produto.temDesconto)
+  .reduce(
+    (acumulador, produto) => acumulador + produto.quantidade * produto.preco,
+    0
+  );
+
+console.log(faturamentoTotal.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'}))
+  
+// ------------------------------------------------------------------------------------
+
+// const numeros = [1, 2, 3, 4, 5];
+
+// const dobro = numeros.map((numero, index, arrayCompleto) => {
+//  console.log(arrayCompleto);|
+// });
+
+
 // Criar um novo Array formatando a moeda e dando desconto aos clientes
-const novosProdutos = produtos.map((produto) => {
-  const novoPreco = produto.temDesconto ? produto.preco * 0.9 : produto.preco;
+// const novosProdutos = produtos.map((produto) => {
+//   const novoPreco = produto.temDesconto ? produto.preco * 0.9 : produto.preco;
 
-  // Ternário = IF e ELSE    ? = IF / ELSE
+//   Ternário = IF e ELSE    ? = IF / ELSE
 
-  return {
-    id: produto.id,
-    nome: produto.nome,
-    preco: novoPreco.toLocaleString("pt-br", {
-      style: "currency",
-      currency: "BRL",
-    }),
-    quantidade: produto.quantidade,
-  };
-});
+//   return {
+//     id: produto.id,
+//     nome: produto.nome,
+//     preco: novoPreco.toLocaleString("pt-br", {
+//       style: "currency",
+//       currency: "BRL",
+//     }),
+//     quantidade: produto.quantidade,
+//   };
+// });
 
 // console.log(novosProdutos);
 
 // Qual será o faturamento, se vendermos todo o estoque
 
-const totalVendas = produtos.reduce((acumulador, produto) => {
-  return acumulador + produto.preco * produto.quantidade;
-}, 0);
+// const totalVendas = produtos.reduce((acumulador, produto) => {
+//   return acumulador + produto.preco * produto.quantidade;
+// }, 0);
 
-console.log(
-  totalVendas.toLocaleString("pt-br", {
-    style: "currency",
-    currency: "BRL",
-  })
-);
+// console.log(
+//   totalVendas.toLocaleString("pt-br", {
+//     style: "currency",
+//     currency: "BRL",
+//   })
+// );
 
 // const numeros = [1, 2, 3, 4, 5];
 
@@ -81,10 +98,18 @@ console.log(
 
 // console.log(soma);
 
+// FILTRAR SOMENTE NUMEROS PARES
+
+// const numeros = [1, 2, 3, 4, 5, 6, 7, 9, 10];
+
+// const pares = numeros.filter((numero) => {
+//   return numero % 2 === 0;
+// });
+
+// console.log(pares)
+
 // FILTRAR SOMENTE OS PRODUTOS EM PROMOÇÃO
 
-const numeros = [1, 2, 3, 4, 5, 6, 7, 9, 10];
+// const promocao = produtos.filter((produto) => produto.temDesconto);
 
-const pares = numeros.filter((numero) => {
-  return numero % 2 === 0;
-});
+// console.log(promocao);
